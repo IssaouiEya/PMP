@@ -1,0 +1,43 @@
+scalar ObjectId
+type Project{
+    id: ID!
+    name: String!
+    description:String!
+    deliverydate:String!
+    user: User!
+}
+type User {
+    id:ID!
+    firstname: String!
+    lastname:String!
+    birthdatedate:String!
+    role:UserRole!
+    username:String
+    password:String
+
+}
+
+enum UserRole {
+    PROJECT_MANAGER,
+    SIMPLE_EMPLOYEE
+}
+
+type Query {
+    getAllProject: [Project]
+    getAllUser: [User]
+    getProjectById(id: ID!):Project
+    getUserById(id: ID!): User
+}
+
+type Mutation {
+    addProject(name: String!, description :String , deliverydate:String): Project
+    updateProject(id: ID!,name: String!, description :String , deliverydate:String): Project
+    deleteProject(id: ID!): Boolean
+    updateUser(id: ID!,firsname: String!, lastname:String !,birthdate:String! , role:UserRole! ,username:String !,password:String): User
+    deleteUser(id: ID!): Boolean
+    addUser(firstname: String!, lastname:String !,birthdate:String! , role:UserRole! ,username:String !,password:String!,projects: [ID!]!): User!
+
+
+}
+
+
